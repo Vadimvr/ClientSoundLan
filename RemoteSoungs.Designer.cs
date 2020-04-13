@@ -1,6 +1,6 @@
 ﻿namespace clientSoung
 {
-    partial class RemoteSoungs
+    partial class RemoteSounds
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,32 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
             this.Start = new System.Windows.Forms.Button();
             this.Stop = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.portNUD = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.portNUD)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(76, 81);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "192.168.100.12";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(245, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "65535";
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(76, 182);
+            this.Start.Location = new System.Drawing.Point(28, 40);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 2;
@@ -63,7 +49,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(209, 182);
+            this.Stop.Location = new System.Drawing.Point(129, 40);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 3;
@@ -71,38 +57,70 @@
             this.Stop.UseVisualStyleBackColor = true;
             this.Stop.Click += new System.EventHandler(this.Stop_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // portNUD
+            // 
+            this.portNUD.Location = new System.Drawing.Point(129, 14);
+            this.portNUD.Maximum = new decimal(new int[] {
+            65000,
+            0,
+            0,
+            0});
+            this.portNUD.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.portNUD.Name = "portNUD";
+            this.portNUD.Size = new System.Drawing.Size(75, 20);
+            this.portNUD.TabIndex = 6;
+            this.portNUD.Value = new decimal(new int[] {
+            8855,
+            0,
+            0,
+            0});
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(418, 87);
+            this.label1.Location = new System.Drawing.Point(97, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Port";
             // 
-            // Form1
+            // RemoteSounds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(245, 83);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.portNUD);
             this.Controls.Add(this.Stop);
             this.Controls.Add(this.Start);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.Name = "RemoteSounds";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Client remote soungs";
+            ((System.ComponentModel.ISupportInitialize)(this.portNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Button Stop;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.NumericUpDown portNUD;
         private System.Windows.Forms.Label label1;
     }
 }

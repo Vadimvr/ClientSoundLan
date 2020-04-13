@@ -16,7 +16,7 @@ namespace clientSoung
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RemoteSoungs());
+            Application.Run(new RemoteSounds());
         }
     }
 }
