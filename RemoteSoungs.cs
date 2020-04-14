@@ -25,14 +25,15 @@ namespace clientSoung
         }
         private void Listening()
         {
-            listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            listeningSocket.Bind(remoteIp);
-            buffer = new BufferedWaveProvider(new WaveFormat(44000, 32, 2));
-            outSound = new WaveOut();
-            outSound.Init(buffer);
-            outSound.Play();
             try
             {
+                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                listeningSocket.Bind(remoteIp);
+                buffer = new BufferedWaveProvider(new WaveFormat(44000, 32, 2));
+                outSound = new WaveOut();
+                outSound.Init(buffer);
+                outSound.Play();
+
                 while (play)
                 {
 
@@ -43,44 +44,65 @@ namespace clientSoung
             }
             catch (SocketException ex)
             {
-                play = false;
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString() + "\n" + ex.Message);
+            }
+            catch (ThreadAbortException ex)
+            {
+                //MessageBox.Show(ex.Message);
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString() + "\n" + ex.Message);
+            }
+            finally
+            {
                 play = false;
-                MessageBox.Show(ex.Message);
             }
         }
         private void Start_Click(object sender, EventArgs e)
         {
             if (!play)
             {
-                port = (int)portNUD.Value;
-                
-                play = true;
-                
-                remoteIp = new IPEndPoint(IPAddress.Parse(Dns.GetHostByName(Host).AddressList[0].ToString()), port);
-                label3.Text = Dns.GetHostByName(Host).AddressList[0].ToString();
-                thread = new Thread(new ThreadStart(Listening));
-                thread.Start();
+                try
+                {
+                    port = (int)portNUD.Value;
+
+                    play = true;
+
+                    remoteIp = new IPEndPoint(IPAddress.Parse(Dns.GetHostByName(Host).AddressList[0].ToString()), port);
+                    label3.Text = Dns.GetHostByName(Host).AddressList[0].ToString();
+                    thread = new Thread(new ThreadStart(Listening));
+                    thread.Start();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString() + "\n" + ex.Message);
+                }
             }
         }
         private void Stop_Click(object sender, EventArgs e)
         {
-            if (play)
+            try
             {
-                thread.Abort();
-                play = false;
-                listeningSocket.Close();
-               listeningSocket.Dispose();
-                if (outSound != null)
+                if (play)
                 {
-                    outSound.Stop();
-                    outSound.Dispose();
-                    outSound = null;
+                    thread.Abort();
+                    play = false;
+                    listeningSocket.Close();
+                    listeningSocket.Dispose();
+                    if (outSound != null)
+                    {
+                        outSound.Stop();
+                        outSound.Dispose();
+                        outSound = null;
+                    }
+                    buffer = null;
                 }
-                buffer = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString() + "\n" + ex.Message);
             }
         }
     }
