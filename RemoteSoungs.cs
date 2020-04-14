@@ -20,47 +20,48 @@ namespace clientSoung
         public RemoteSounds()
         {
             InitializeComponent();
+            Host = Dns.GetHostName();
+            label3.Text = Dns.GetHostByName(Host).AddressList[0].ToString();
         }
         private void Listening()
-        { 
-            while (play)
+        {
+            listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            listeningSocket.Bind(remoteIp);
+            buffer = new BufferedWaveProvider(new WaveFormat(44000, 32, 2));
+            outSound = new WaveOut();
+            outSound.Init(buffer);
+            outSound.Play();
+            try
             {
-                try
+                while (play)
                 {
+
                     byte[] data = new byte[65535];
                     int received = listeningSocket.ReceiveFrom(data, ref remoteIp);
                     buffer.AddSamples(data, 0, received);
                 }
-                catch (SocketException ex)
-                {
-                    play = false;
-                    MessageBox.Show(ex.Message);
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    play = false;
-                    MessageBox.Show(ex.Message);
-                    break;
-                }
             }
-            thread = new Thread(new ThreadStart(Listening));
-            thread.Start();
+            catch (SocketException ex)
+            {
+                play = false;
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                play = false;
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Start_Click(object sender, EventArgs e)
         {
             if (!play)
             {
                 port = (int)portNUD.Value;
-                buffer = new BufferedWaveProvider(new WaveFormat(36000, 32, 2));
-                outSound = new WaveOut();
-                outSound.Init(buffer);
-                outSound.Play();
+                
                 play = true;
-                Host = Dns.GetHostName();
+                
                 remoteIp = new IPEndPoint(IPAddress.Parse(Dns.GetHostByName(Host).AddressList[0].ToString()), port);
-                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                listeningSocket.Bind(remoteIp);
+                label3.Text = Dns.GetHostByName(Host).AddressList[0].ToString();
                 thread = new Thread(new ThreadStart(Listening));
                 thread.Start();
             }

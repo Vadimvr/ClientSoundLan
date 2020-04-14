@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.Start = new System.Windows.Forms.Button();
             this.Stop = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.portNUD = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.portNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(28, 40);
+            this.Start.Location = new System.Drawing.Point(31, 77);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 2;
@@ -49,7 +49,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(129, 40);
+            this.Stop.Location = new System.Drawing.Point(129, 77);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 3;
@@ -57,14 +57,9 @@
             this.Stop.UseVisualStyleBackColor = true;
             this.Stop.Click += new System.EventHandler(this.Stop_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // portNUD
             // 
-            this.portNUD.Location = new System.Drawing.Point(129, 14);
+            this.portNUD.Location = new System.Drawing.Point(129, 42);
             this.portNUD.Maximum = new decimal(new int[] {
             65000,
             0,
@@ -87,11 +82,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(97, 16);
+            this.label1.Location = new System.Drawing.Point(97, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Port";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(80, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "This IP";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(126, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 9;
             // 
             // RemoteSounds
             // 
@@ -99,7 +111,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(245, 83);
+            this.ClientSize = new System.Drawing.Size(234, 111);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.portNUD);
             this.Controls.Add(this.Stop);
@@ -119,9 +133,10 @@
         #endregion
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Button Stop;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.NumericUpDown portNUD;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
